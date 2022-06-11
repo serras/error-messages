@@ -7,25 +7,33 @@ are in force.
 
 The message index is in the directory `message-index`.
 
-## How to Document a GHC Error Code
+## Building GHC with Error Codes
 
-To document a new error code, the following workflow can be convenient.
- 1. Choose a code that you'd like to document, say `GHC-123`
- 2. One of the following modules in the `compiler` directory of the GHC source tree will have a method called `diagnosticCode` in the instance of `Diagnostic`:
-   * `GHC.Tc.Errors.Ppr`
-   * `GHC.Driver.Errors.Ppr`
-   * `GHC.Parser.Errors.Ppr`
-   * `GHC.HsToCore.Errors.Ppr`
- 3. Once the code has been found, identify the error datatype constructor that produces it.
- 4. The documentation for the constructor will be in one of the following modules. Read the Haddock for an explanation of the error's meaning:
-   * `GHC.Tc.Errors.Types`
-   * `GHC.Driver.Errors.Types`
-   * `GHC.Parser.Errors.Types`
-   * `GHC.HsToCore.Errors.Types`
- 5. Find the pretty-printer for the error constructor in the `X.Ppr` module. This will give an idea of how the message looks when rendered.
- 6. Grep the `testsuite` directory for the error text to find examples that trigger the error.
- 7. Follow the instructions below to create a page with an explanation and examples.
- 
+Please follow the instructions on [building GHC with Hadrian](https://gitlab.haskell.org/ghc/ghc/-/wikis/building/hadrian),
+switching to the wip/T21684` branch before compilation.
+Your error messages would then contain an ID.
+
+```
+$ _build/stage1/bin/ghc --interactive
+GHCi, version 9.5.20220609: https://www.haskell.org/ghc/  :? for help
+ghci> 1 + "foo"
+
+<interactive>:1:1: error: [GHC-39999]
+    • No instance for (Num String) arising from the literal '1'
+    • In the first argument of '(+)', namely '1'
+      In the expression: 1 + "foo"
+      In an equation for 'it': it = 1 + "foo"
+```
+
+## Task Lists
+
+We keep track of which errors are being worked on, and which still require documentation,
+using a bunch of issues:
+
+- [Type checker errors](https://github.com/haskell/error-messages/issues/66)
+- [Driver errors](https://github.com/haskell/error-messages/issues/67)
+- [Parser errors](https://github.com/haskell/error-messages/issues/68)
+- [Desugarer errors](https://github.com/haskell/error-messages/issues/69)
 
 ## Contributing New Messages
 
