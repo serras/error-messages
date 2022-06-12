@@ -48,8 +48,8 @@ As a result, GHC cannot write the <code>Functor</code> instance for you.</p>
 <li>
   <code>Main.hs</code>:
   <p>
-    <div class="example before">
-      <p>Before:</p>
+    
+    <div class="example">
       <pre>{-# language DeriveFunctor #-}
 module Main where
 
@@ -57,10 +57,7 @@ data Pet = Cat | Dog
   deriving Functor
 </pre>
     </div>
-    <div class="example after">
-      <p>After:</p>
-      <pre><not present></pre>
-    </div>
+    
   </p>
 </li>
 
