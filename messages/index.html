@@ -76,6 +76,20 @@
         </tr>
     
         <tr>
+            <td>GHC-46956</td>
+            <td><a href="../messages/GHC-46956/index.html">Kind variable would escape its scope</a></td>
+            <td>A local kind variable was used to classify a type from a scope in which the kind variable is not available</td>
+            <td>9.6.1</td>
+        </tr>
+    
+        <tr>
+            <td>GHC-62016</td>
+            <td><a href="../messages/GHC-62016/index.html">Cannot derive well-kinded instance</a></td>
+            <td>An instance cannot be derived because the kinds cannot be made to match</td>
+            <td>9.6.1</td>
+        </tr>
+    
+        <tr>
             <td>GHC-62161</td>
             <td><a href="../messages/GHC-62161/index.html">Incomplete Patterns</a></td>
             <td>Pattern match(es) are non-exhaustive</td>
@@ -106,7 +120,7 @@
         <tr>
             <td>GHC-95909</td>
             <td><a href="../messages/GHC-95909/index.html">Missing strict fields</a></td>
-            <td>Constructor does not have required strict field(s)</td>
+            <td>Constructor was not instantiated with required strict field(s)</td>
             <td>9.6.1</td>
         </tr>
     

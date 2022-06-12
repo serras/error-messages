@@ -5,7 +5,7 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noindex">
-        <title>All fields are strict without explicit bang patterns if the language extension is enabled — Haskell Error Index</title>
+        <title>All fields are strict if the StrictData language extension is enabled — Haskell Error Index</title>
         <link rel="stylesheet" href="../../../css/default.css" />
     </head>
     <body>
@@ -29,10 +29,10 @@
               
                 <a href="../../../messages/GHC-95909/index.html">Missing strict fields [GHC-95909]</a>&nbsp;»
               
-              All fields are strict without explicit bang patterns if the language extension is enabled
+              All fields are strict if the StrictData language extension is enabled
             </nav>
-            <h1>All fields are strict without explicit bang patterns if the language extension is enabled</h1>
-            <p>When using the language extension <code>{-# LANGUAGE Strict #-}</code> or <code>{-# LANGUAGE StrictData #-}</code>, all fields are strict, even if we do not explicitly use the strictness bang pattern <code>!</code>. Thus, we must instantiate all fields on construction.</p>
+            <h1>All fields are strict if the StrictData language extension is enabled</h1>
+            <p>When using the language extension <code>{-# LANGUAGE Strict #-}</code> or <code>{-# LANGUAGE StrictData #-}</code>, all fields are strict, even if we do not explicitly use the strictness flag <code>!</code>. Thus, we must instantiate all fields on construction.</p>
 <h2 id="error-message">Error Message</h2>
 <pre><code>StrictExtension.hs:9:8: error:  [GHC-95909]
     • Constructor ‘A’ does not have the required strict field(s): b

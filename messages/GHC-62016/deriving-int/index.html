@@ -5,7 +5,7 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noindex">
-        <title>Missing space in type application — Haskell Error Index</title>
+        <title>Deriving Functor for a ground type — Haskell Error Index</title>
         <link rel="stylesheet" href="../../../css/default.css" />
     </head>
     <body>
@@ -27,45 +27,39 @@
               
                 <a href="../../../messages/index.html">Messages</a>&nbsp;»
               
-                <a href="../../../messages/GHC-84077/index.html">Type Application Without Space [GHC-84077]</a>&nbsp;»
+                <a href="../../../messages/GHC-62016/index.html">Cannot derive well-kinded instance [GHC-62016]</a>&nbsp;»
               
-              Missing space in type application
+              Deriving Functor for a ground type
             </nav>
-            <h1>Missing space in type application</h1>
-            <h2 id="error-message">Error Message</h2>
-<pre><code>Example.hs:7:5: error:
-    @-pattern in expression context: g@Int
-    Type application syntax requires a space before '@'
-  |
-7 | f = g@Int
-  |     ^^^^^</code></pre>
+            <h1>Deriving Functor for a ground type</h1>
+            <h2 id="error-message">Error message</h2>
+<pre><code>Main.hs:5:12: error: [GHC-62016]
+    • Cannot derive well-kinded instance of form ‘Functor (Pet ...)’
+        Class ‘Functor’ expects an argument of kind ‘* -&gt; *’
+    • In the data declaration for ‘Pet’</code></pre>
 <h2 id="explanation">Explanation</h2>
-<p>A space is missing before the type application. The expression cannot be correctly parsed.</p>
+<p>The <code>Functor</code> type class applies to type constructors, that is,
+data types which take other type as parameter. The <code>Pet</code> data type
+defined in the code does <em>not</em> take any type parameters.
+As a result, GHC cannot write the <code>Functor</code> instance for you.</p>
 
 <ul>
 
 <li>
-  <code>Example.hs</code>:
+  <code>Main.hs</code>:
   <p>
     <div class="example before">
       <p>Before:</p>
-      <pre>{-# LANGUAGE TypeApplications #-}
-module Example where
+      <pre>{-# language DeriveFunctor #-}
+module Main where
 
-g :: (Num a) => a -> a
-g x = x * 2
-
-f = g@Int</pre>
+data Pet = Cat | Dog 
+  deriving Functor
+</pre>
     </div>
     <div class="example after">
       <p>After:</p>
-      <pre>{-# LANGUAGE TypeApplications #-}
-module Example where
-
-g :: (Num a) => a -> a
-g x = x * 2
-
-f = g @Int</pre>
+      <pre><not present></pre>
     </div>
   </p>
 </li>

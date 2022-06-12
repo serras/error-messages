@@ -32,9 +32,9 @@
               Missing strict field in record syntax
             </nav>
             <h1>Missing strict field in record syntax</h1>
-            <p>The instantiation of a strict field in a record is missing. In <code>aFine</code>, we can leave one field uninstantiated as it is not strict, and therefore is not evaluated to <code>undefined</code> (due to lazy evaluation). However in <code>aBad</code> we cannot, as the field <code>a</code> is strict.</p>
+            <p>The instantiation of a strict field in a record is missing. In <code>aFine</code>, we can leave one field uninstantiated as it is not strict, and therefore is not evaluated until needed, due to lazy evaluation. However in <code>aBad</code> we cannot, as the field <code>a</code> is strict.</p>
 <h2 id="error-message">Error Message</h2>
-<pre><code>StrictBangPatterns.hs:12:8: error: [GHC-95909]
+<pre><code>MissingStrictField.hs:12:8: error: [GHC-95909]
     • Constructor ‘A’ does not have the required strict field(s): a
     • In the expression: A {b = 5}
       In an equation for ‘aBad’: aBad = A {b = 5}
@@ -45,13 +45,11 @@
 <ul>
 
 <li>
-  <code>StrictBangPatterns.hs</code>:
+  <code>MissingStrictField.hs</code>:
   <p>
     <div class="example before">
       <p>Before:</p>
-      <pre>{-# LANGUAGE BangPatterns #-}
-
-module StrictBangPatterns where
+      <pre>module MissingStrictField where
 
 data A = A
     { a :: !Bool
@@ -67,9 +65,7 @@ aBad = A { b = 5 }
     </div>
     <div class="example after">
       <p>After:</p>
-      <pre>{-# LANGUAGE BangPatterns #-}
-
-module StringBangPatterns where
+      <pre>module MissingStrictField where
 
 data A = A
     { a :: !Bool
