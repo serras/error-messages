@@ -48,8 +48,8 @@ between the expected and given kinds.</p>
 <li>
   <code>Main.hs</code>:
   <p>
-    
-    <div class="example">
+    <div class="example before">
+      <p>Before:</p>
       <pre>{-# language DeriveFunctor #-}
 module Main where
 
@@ -57,7 +57,10 @@ data AppliedToInt f = AppliedToInt (f Int)
   deriving Functor
 </pre>
     </div>
-    
+    <div class="example after">
+      <p>After:</p>
+      <pre><not present></pre>
+    </div>
   </p>
 </li>
 
